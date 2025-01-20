@@ -1,0 +1,18 @@
+{
+    "train": [
+        {
+            "root": "/workspace/Open-GroundingDino/DATASET/catdog_coco/train",
+            "anno": "/workspace/Open-GroundingDino/DATASET/catdog_coco/annotations/instances_train.jsonl",
+            "label_map": "{\"1\": \"dog\", \"2\": \"cat\"}",
+            "dataset_mode": "odvg"
+        }
+    ],
+    "val": [
+        {
+            "root": "/workspace/Open-GroundingDino/DATASET/catdog_coco/val",
+            "anno": "/workspace/Open-GroundingDino/DATASET/catdog_coco/annotations/instances_val.json",
+            "label_map": null,
+            "dataset_mode": "coco"
+        }
+    ]
+}
