@@ -49,11 +49,11 @@ python setup.py install
 python test.py
 ```
 >True check_forward_equal_with_pytorch_double: max_abs_err 8.67e-19 max_rel_err 2.35e-16
-  True check_forward_equal_with_pytorch_float: max_abs_err 4.66e-10 max_rel_err 1.13e-07
-  True check_gradient_numerical(D=30)
-  True check_gradient_numerical(D=32)
-  True check_gradient_numerical(D=64)
-  True check_gradient_numerical(D=71)
+>True check_forward_equal_with_pytorch_float: max_abs_err 4.66e-10 max_rel_err 1.13e-07
+>True check_gradient_numerical(D=30)
+>True check_gradient_numerical(D=32)
+>True check_gradient_numerical(D=64)
+>True check_gradient_numerical(D=71)
 
 * 测试环境，下载好预训练权重放到Open-GroundingDino/bert-base-uncased，Open-GroundingDino/MODEL/groundingdino_swinb_cogcoor.pth
 ```
