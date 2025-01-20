@@ -2,7 +2,7 @@
 
 官方项目地址：https://github.com/IDEA-Research/GroundingDINO
 
-微调项目地址：https://github.com/longzw1997/Open-GroundingDino
+微调项目地址：https://github.com/longzw1997/GroundingDino-Finetuning
 
 Swin-T：https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth
 
@@ -36,7 +36,7 @@ pip install -r requirements.txt
 ```
 * 安装groundingdino
 ```
-cd Open-GroundingDino/
+cd GroundingDino-Finetuning/
 pip install -e .
 ```
 * 安装MultiScaleDeformableAttention注意力 
@@ -45,7 +45,7 @@ cd groundingdino/models/GroundingDINO/ops
 python setup.py install
 ```
 * 测试MultiScaleDeformableAttention安装是否成功
-```# Open-GroundingDino/groundingdino/models/GroundingDINO/ops
+```# GroundingDino-Finetuning/groundingdino/models/GroundingDINO/ops
 python test.py
 ```
 >True check_forward_equal_with_pytorch_double: max_abs_err 8.67e-19 max_rel_err 2.35e-16<br>
@@ -55,9 +55,9 @@ python test.py
 >True check_gradient_numerical(D=64)<br>
 >True check_gradient_numerical(D=71)<br>
 
-* 测试环境，下载好预训练权重放到Open-GroundingDino/bert-base-uncased，Open-GroundingDino/MODEL/groundingdino_swinb_cogcoor.pth
+* 测试环境，下载好预训练权重放到GroundingDino-Finetuning/bert-base-uncased，GroundingDino-Finetuning/MODEL/groundingdino_swinb_cogcoor.pth
 ```
-cd Open-GroundingDino/
+cd GroundingDino-Finetuning/
 python tools/inference_on_a_image.py -i DATASET/test/bus.jpg -c config/cfg_base.py -t 'person . bus' -p MODEL/groundingdino_swinb_cogcoor.pth -o output
 ```
 ### 2.数据集准备
