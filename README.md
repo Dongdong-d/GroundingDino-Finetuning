@@ -1,4 +1,4 @@
-2025/1/22：修复验证指标过低问题，由于数据集转换过程中训练集标签从0开始，而验证集标签从1开始，导致验证时标签错位，在GroundingDino-Finetuning/engine.py增加标签对齐
+* 2025/1/22：修复验证指标过低问题，由于数据集转换过程中训练集标签从0开始，而验证集标签从1开始，导致验证时标签错位，在GroundingDino-Finetuning/engine.py增加标签对齐
 ------------------------------------------------------------------------
 官方论文：[Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection](https://arxiv.org/pdf/2303.05499)
 
