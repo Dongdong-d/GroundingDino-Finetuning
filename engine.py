@@ -43,11 +43,6 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
         captions = [t["caption"] for t in targets]
         cap_list = [t["cap_list"] for t in targets]
         targets = [{k: v.to(device) for k, v in t.items() if torch.is_tensor(v)} for t in targets]
-        
-        # 对齐验证标签，id-1
-        for item in targets:
-            item['labels'] = item['labels'] - 1
-        
         with torch.cuda.amp.autocast(enabled=args.amp):
             outputs = model(samples, captions=captions)
             loss_dict = criterion(outputs, targets, cap_list, captions)
