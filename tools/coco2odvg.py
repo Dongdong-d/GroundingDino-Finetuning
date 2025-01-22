@@ -55,11 +55,35 @@ def coco2odvg(args, id_map, key_list, val_list):
                 }
             }
         )
-    print("  == dump meta ...")
     train_odvg = args.train_coco.replace('.json','.jsonl')
     with jsonlines.open(train_odvg, mode="w") as writer:
         writer.write_all(metas)
-    print("  == done.")
+    print(f"Updated train_mode saved to {train_odvg}")
+    
+def coco_val(coco_json_path):
+    with open(coco_json_path, 'r') as f:
+        coco_data = json.load(f)
+    
+    Flag = True
+    for category in coco_data['categories']:
+        if category['id'] == 0:
+            Flag = False
+            break
+    
+    if Flag:
+        for annotation in coco_data['annotations']:
+            annotation['category_id'] -= 1
+
+        for category in coco_data['categories']:
+            category['id'] -= 1
+
+    output_json_path = coco_json_path.replace('.json','.jsonl')
+    
+    with open(output_json_path, 'w') as f:
+        json.dump(coco_data, f, ensure_ascii=False, indent=4)
+    
+    print(f"Updated category_ids saved to {output_json_path}")
+
 
 def create_dataset_json(root, train_odvg, train_label_map, train_mode,
                         val_coco, val_mode, output):
@@ -124,14 +148,15 @@ if __name__ == "__main__":
 
     # 转换 COCO 数据集
     coco2odvg(args, id_map, key_list, val_list)
-
+    coco_val(args.val_coco)
+    
     # 创建 dataset.json 文件
     create_dataset_json(
         root=args.root,
         train_odvg=args.train_coco.replace('.json','.jsonl'),
         train_label_map=args.ori_map,
         train_mode=args.mode_train,
-        val_coco=args.val_coco,
+        val_coco=args.val_coco.replace('.json','.jsonl'),
         val_mode=args.mode_val,
         output=args.output
     )
