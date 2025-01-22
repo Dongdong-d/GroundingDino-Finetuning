@@ -162,11 +162,7 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
         samples = samples.to(device)
 
         targets = [{k: to_device(v, device) for k, v in t.items()} for t in targets]
-        
-        # 对齐验证标签，id-1
-        for item in targets:
-            item['labels'] = item['labels'] - 1
-          
+           
         bs = samples.tensors.shape[0]
         input_captions = [caption] * bs
         with torch.cuda.amp.autocast(enabled=args.amp):
@@ -197,9 +193,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
             panoptic_evaluator.update(res_pano)
         
         if args.save_results:
-
-
-
             for i, (tgt, res) in enumerate(zip(targets, results)):
                 """
                 pred vars:
@@ -277,9 +270,6 @@ def evaluate(model, criterion, postprocessors, data_loader, base_ds, device, out
         stats['PQ_all'] = panoptic_res["All"]
         stats['PQ_th'] = panoptic_res["Things"]
         stats['PQ_st'] = panoptic_res["Stuff"]
-
-
-
     return stats, coco_evaluator
 
 
